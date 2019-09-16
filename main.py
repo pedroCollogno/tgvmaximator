@@ -4,7 +4,9 @@ from datetime import datetime,date
 import threading
 from crontab import CronTab
 from proof_of_concepts import lafonction
+
 content = []
+filename = "travels.txt"
 with open filename as f:
     content = f.readlines()
 
