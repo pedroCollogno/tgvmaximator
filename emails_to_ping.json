@@ -1,4 +1,19 @@
-[{
-    "name": "Pedro",
-    "email": "pierre.collignon@yahoo.fr"
-}]
+{
+    "Pedro": {
+        "name": "Pedro",
+        "email": "pierre.collignon@yahoo.fr"
+    },
+
+    "Marin": {
+        "name": "Marin",
+        "email": "marin.merlin@supelec.fr"
+    },
+    "Renaud": {
+        "name": "Renaud",
+        "email": "renaud.allemand@supelec.fr"
+    },
+    "Erwan": {
+        "name": "Erwan",
+        "email": "erwan.dereure@supelec.fr"
+    }
+}
