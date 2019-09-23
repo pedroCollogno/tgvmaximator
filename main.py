@@ -2,33 +2,33 @@ import requests
 import json
 from datetime import datetime,date
 import threading
-from crontab import CronTab
-from proof_of_concepts import lafonction
+import time
+from proof_of_concept import api_call
+from check_novelty import check_novelty
 
 content = []
 filename = "travels.txt"
-with open filename as f:
-    content = f.readlines()
+with open(filename) as f:
+    content = f.read().splitlines()
 
-required_day = '2019-09-20' # Required format
-departure_city = 'PAR' # See other station's code
-arrival_city = 'MZM'
-
-options = 'extendedToLocality=true&onlyDirectTrains=true' # Don't care, don't touch
-
-
-class travelThread(threading.Thread):
-    def _init_(self,date,origin,destination,option):
-        self.date = datetime.strptime(date,%Y-%m-%d)
+class TravelThread(threading.Thread):
+    def __init__(self, date, origin, destination, user_list):
+        threading.Thread.__init__(self)
+        self.date = datetime.strptime(date,'%Y-%m-%d').date()
         self.origin = origin
         self.destination = destination
+        self.id_list = []
+        self.user_list = user_list
 
-    def run():
-        while self.date<date.today:
-            lafonction(self.date,self.origin,self.destination)
-            time.sleep(60*10)
+    def run(self):
+        while self.date >= date.today():
+            print("Checking availibility for the trip from {0} to {1} on {2}".format(self.origin, self.destination, self.date.strftime("%Y-%m-%d")))
+            info = api_call(self.origin, self.destination, self.date.strftime("%Y-%m-%d"))
+            self.id_list = check_novelty(self.id_list, info, self.origin, self.destination, self.date, self.user_list)
+            time.sleep(60 * 10)
 
 for travel in content:
     info = travel.split(' ')
-    t = travelThread(info[0],info[1],info[2],option)
+    print(info)
+    t = TravelThread(info[0], info[1], info[2], ['Marin'])
     t.start()
