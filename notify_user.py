@@ -21,23 +21,23 @@ def notify_user(origin, destination, date, dic, user_list):
             # Create the plain-text and HTML version of your message
             text = """\
             Bonjour M. {0},
-            Un nouveaux train TGVMax est disponible pour votre trajet de {1} a {2} le {3}. Il part a {4}. 
-            Si vous cette horaire vous correspond vous pouvez allez manger mes couilles en salade.
+            Un nouveau train TGVMax est disponible pour votre trajet de {1} a {2} le {3}. Il part à {4}. 
+            Si cet horaire vous correspond vous pouvez aller manger nos couilles en salade.
             
             Cordialement,
-            L'equipe TGVMaximator""".format(name, origin, destination, date.strftime("%Y-%m-%d"), dic['departure_time'].strftime("%Hh%M"))
-            
+            L'équipe TGVMaximator""".format(name, origin, destination, date.strftime("%Y-%m-%d"), dic['departure_time'].strftime("%Hh%M"))
+
             html = """\
             <html>
             <body>
                 <p>Bonjour M. {0},<br>
-                Un nouveaux train TGVMax est disponible pour votre trajet de {1} a {2} le {3}. Il part a {4}. 
-                Si cette horaire vous correspond vous pouvez allez manger mes couilles en salade.<br>
-                Rendez vous sur <a href="https://www.oui.sncf/">Oui.sncf</a> 
-                pour vous faire une vinaigrette afin de mieux aprrecier le plat de chibre.<br>
+                Un nouveau train TGVMax est disponible pour votre trajet de {1} a {2} le {3}. Il part à {4}. 
+                Si cet horaire vous correspond vous pouvez aller manger mes couilles en salade.<br>
+                Rendez-vous sur <a href="https://www.oui.sncf/bons-plans/tgvmax#!/">Oui.sncf</a> 
+                pour vous faire une vinaigrette afin de mieux apprécier le plat de chibre.<br>
                 <br>
                 Cordialement,<br>
-                L'equipe TGVMaximator
+                L'équipe TGVMaximator
                 </p>
             </body>
             </html>
