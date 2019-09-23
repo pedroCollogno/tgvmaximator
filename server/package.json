@@ -1,0 +1,22 @@
+{
+  "name": "tgvmaximator",
+  "version": "1.0.0",
+  "description": "An automated notifier service that lets you know when new tgv max trains are available",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroCollogno/tgvmaximator.git"
+  },
+  "keywords": [
+    "tgv"
+  ],
+  "author": "Maximator",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pedroCollogno/tgvmaximator/issues"
+  },
+  "homepage": "https://github.com/pedroCollogno/tgvmaximator#readme"
+}
