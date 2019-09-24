@@ -3,7 +3,7 @@ import json
 from datetime import datetime,date
 import threading
 import time
-from proof_of_concept import api_call
+from proof_of_concept import api_call, SncfVoyage
 from check_novelty import check_novelty
 
 content = []
@@ -23,7 +23,8 @@ class TravelThread(threading.Thread):
     def run(self):
         while self.date >= date.today():
             print("Checking availibility for the trip from {0} to {1} on {2}".format(self.origin, self.destination, self.date.strftime("%Y-%m-%d")))
-            info = api_call(self.origin, self.destination, self.date.strftime("%Y-%m-%d"))
+            sncf_voyage = SncfVoyage(self.origin, self.destination, self.date.strftime("%Y-%m-%d"))
+            info = sncf_voyage.api_call()
             self.id_list = check_novelty(self.id_list, info, self.origin, self.destination, self.date, self.user_list)
             time.sleep(60 * 10)
 
