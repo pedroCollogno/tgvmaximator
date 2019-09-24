@@ -1,8 +1,6 @@
 import requests
 import json
 from datetime import datetime
-import os
-dirname = os.path.dirname(__file__)
 
 
 class SncfVoyage:
