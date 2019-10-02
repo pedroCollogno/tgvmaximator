@@ -30,5 +30,5 @@ class TravelThread(threading.Thread):
 for travel in content:
     info = travel.split(' ')
     print(info)
-    t = TravelThread(info[0], info[1], info[2], ['Marin'])
+    t = TravelThread(info[0], info[1], info[2], ['Marin','Renaud','Erwan','Pedro'])
     t.start()
