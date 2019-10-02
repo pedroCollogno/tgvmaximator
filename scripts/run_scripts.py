@@ -4,10 +4,12 @@ from datetime import datetime,date
 import time
 from proof_of_concept import api_call
 from check_novelty import check_novelty
+import os
+dirname = os.path.dirname(__file__)
 
 content = []
 filename = "travels.txt"
-with open(filename) as f:
+with open(os.path.join(dirname, filename)) as f:
     content = f.read().splitlines()
 
 for travel in content:

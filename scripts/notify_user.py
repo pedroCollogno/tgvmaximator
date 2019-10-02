@@ -2,10 +2,12 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import json
+import os
+dirname = os.path.dirname(__file__)
 
 def notify_user(origin, destination, date, dic, user_list):
     for user in user_list:
-        with open('emails_to_ping.json') as json_file:
+        with open(os.path.join(dirname, 'emails_to_ping.json')) as json_file:
             user_info = json.load(json_file)
             receiver_email = user_info[user]['email']
             name = user_info[user]['name']
