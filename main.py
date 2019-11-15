@@ -19,12 +19,14 @@ class TravelThread(threading.Thread):
         self.destination = destination
         self.id_list = []
         self.user_list = user_list
+        self.iteration_counter = 0
 
     def run(self):
         while self.date >= date.today():
-            print("Checking availibility for the trip from {0} to {1} on {2}".format(self.origin, self.destination, self.date.strftime("%Y-%m-%d")))
+            print("{0} : Checking availibility for the trip from {1} to {2} on {3}".format(datetime.now().strftime('%H:%M:%S'),self.origin, self.destination, self.date.strftime("%Y-%m-%d")))
             info = api_call(self.origin, self.destination, self.date.strftime("%Y-%m-%d"))
-            self.id_list = check_novelty(self.id_list, info, self.origin, self.destination, self.date, self.user_list)
+            self.id_list = check_novelty(self.id_list, info, self.origin, self.destination, self.date, self.user_list, self.iteration_counter)
+            self.iteration_counter += 1
             time.sleep(60 * 10)
 
 for travel in content:
