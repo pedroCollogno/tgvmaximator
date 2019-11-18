@@ -6,7 +6,10 @@ import time
 from proof_of_concept import api_call
 from check_novelty import check_novelty
 
-
+content = []
+filename = "travels.txt"
+with open(filename) as f:
+    content = f.read().splitlines()
 
 class TravelThread(threading.Thread):
     def __init__(self, date, origin, destination, user_list):
@@ -20,24 +23,20 @@ class TravelThread(threading.Thread):
 
     def run(self):
         while self.date >= date.today():
-            
-while True:
-    content = []
-    filename = "travels.txt"
-    with open(filename) as f:
-        content = f.read().splitlines()
-    for travel in content:
-        if(len(travel.strip()) > 0):
-            info = travel.split(' ')
-            date = info[0]
-            origin = info[1]
-            destination = info[2]
-            names = []
-            for name in info[3:]:
-                names.append(name)
-            print(info)
-            print("{0} : Checking availibility for the trip from {1} to {2} on {3}".format(datetime.now().strftime('%H:%M:%S'),origin, destination, date.strftime("%Y-%m-%d")))
-            travel_data = api_call(origin, destination, date.strftime("%Y-%m-%d"))
-            id_list = check_novelty(id_list, travel_data, origin, destination, date, user_list, iteration_counter)
-            iteration_counter += 1
+            print("{0} : Checking availibility for the trip from {1} to {2} on {3}".format(datetime.now().strftime('%H:%M:%S'),self.origin, self.destination, self.date.strftime("%Y-%m-%d")))
+            info = api_call(self.origin, self.destination, self.date.strftime("%Y-%m-%d"))
+            self.id_list = check_novelty(self.id_list, info, self.origin, self.destination, self.date, self.user_list, self.iteration_counter)
+            self.iteration_counter += 1
             time.sleep(60 * 10)
+
+for travel in content:
+    if(len(travel.strip()) > 0):
+        info = travel.split(' ')
+        names = []
+        for name in info[3:]:
+            names.append(name)
+        info = info[:3]
+        info.append(names)
+        print(info)
+        t = TravelThread(info[0], info[1], info[2], info[3])
+        t.start()
