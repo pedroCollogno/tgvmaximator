@@ -1,0 +1,11 @@
+env
+.vscode/
+__pycache__
+server/node_modules
+server/dist
+.DS_Store
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
